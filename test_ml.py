@@ -1,28 +1,45 @@
 import pytest
-# TODO: add necessary import
+# TODO: add necessary 
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from ml.model import train_model, inference, compute_model_metrics
 
 # TODO: implement the first test. Change the function name and input as needed
-def test_one():
+def test_train_model():
     """
-    # add description for the first test
+    Test that train_model returns a LogisticRegression instance.
     """
     # Your code here
-    pass
+    X_dummy = np.array([[0, 1], [1, 0]])
+    y_dummy = np.array([0, 1])
+    model = train_model(X_dummy, y_dummy)
+    assert isinstance(model, LogisticRegression)
 
 
 # TODO: implement the second test. Change the function name and input as needed
-def test_two():
+def test_inference():
     """
-    # add description for the second test
+    Test that inference returns a numpy array of predictions with the correct shape.
     """
     # Your code here
-    pass
+    X_dummy = np.array([[0, 1], [1, 0]])
+    y_dummy = np.array([0, 1])
+    model = train_model(X_dummy, y_dummy)
+    preds = inference(model, X_dummy)
+    assert isinstance(preds, np.ndarray)
+    assert preds.shape == y_dummy.shape
 
 
 # TODO: implement the third test. Change the function name and input as needed
-def test_three():
+def test_compute_model_metrics():
     """
-    # add description for the third test
+    Test that compute_model_metrics returns three floats: precision, recall, f1-score.
     """
     # Your code here
-    pass
+    y_true = np.array([0, 1, 1])
+    y_preds = np.array([0, 1, 0])
+    p, r, f1 = compute_model_metrics(y_true, y_preds)
+    assert isinstance(p, float)
+    assert isinstance(r, float)
+    assert isinstance(f1, float)
+
